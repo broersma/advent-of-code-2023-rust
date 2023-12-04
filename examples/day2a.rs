@@ -9,11 +9,11 @@ struct Reveal {
 }
 
 fn parse_reveal(input: &str) -> Reveal {
-    static re: Lazy<Regex> = Lazy::new(|| Regex::new(r"(\d+) (\w+)").unwrap());
+    static RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"(\d+) (\w+)").unwrap());
     let mut r = 0;
     let mut g = 0;
     let mut b = 0;
-    re.captures_iter(input)
+    RE.captures_iter(input)
         .map(|c| c.extract())
         .for_each(|(_, [num, color])| match color {
             "red" => r = num.parse::<u32>().unwrap(),
