@@ -103,7 +103,7 @@ fn mapping(input: u64, map: &Vec<Vec<u64>>) -> u64 {
         .find(|range| range[1] <= input && input < range[1] + range[2]);
 
     if let Some(range) = matching_range {
-        return ((input as i64) + (range[0] as i64 - range[1] as i64)) as u64;
+        return input + range[0] - range[1];
     } else {
         return input;
     }

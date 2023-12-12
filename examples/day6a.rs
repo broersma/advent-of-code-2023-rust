@@ -29,12 +29,15 @@ fn main() {
     let (times, distances) = input;
 
     let product: u32 = times
-        .iter()
+        .into_iter()
         .zip(distances)
         .map(|(race_time, record)| {
-            (1..*race_time)
-                .filter(|hold_time| race(*hold_time, *race_time) > record)
-                .count() as u32
+            let count: u32 = (1..race_time)
+                .filter(|hold_time| race(*hold_time, race_time) > record)
+                .count()
+                .try_into()
+                .unwrap();
+            count
         })
         .product();
 
